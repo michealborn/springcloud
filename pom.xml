@@ -13,9 +13,8 @@
         <module>payment8001</module>
         <module>order8002</module>
         <module>cloud-api-common</module>
-        <module>eurake80003</module>
-        <module>eurake</module>
         <module>eurake7001</module>
+        <module>eureka7002</module>
     </modules>
 
     <properties>
