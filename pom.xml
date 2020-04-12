@@ -15,6 +15,7 @@
         <module>cloud-api-common</module>
         <module>eurake7001</module>
         <module>eureka7002</module>
+        <module>payment8003</module>
     </modules>
 
     <properties>

@@ -6,11 +6,7 @@ import com.github.zz.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @Slf4j
@@ -19,11 +15,6 @@ public class PaymentController {
     PaymentService paymentService;
     @Value("${server.port}")
     String serverPort;
-    @Autowired
-    DiscoveryClient discoveryClient;
-
-
-
     //只传给前端CommonResult，不需要前端了解其他的组件
     @PostMapping(value = "/payment/create")
     public CommonResult create(@RequestBody Payment payment){
@@ -45,19 +36,5 @@ public class PaymentController {
         }else{
             return new CommonResult(444,"没有对应记录,查询ID："+id,null);
         }
-    }
-
-    @GetMapping(value = "/payment/discovery")
-    public Object discovery(){
-        //获得所有服务
-        List<String> services = discoveryClient.getServices();
-        for (String service : services) {
-            log.info("***service:"+service);
-        }
-        List<ServiceInstance> payment = discoveryClient.getInstances("PAYMENT");
-        for (ServiceInstance serviceInstance : payment) {
-            log.info(serviceInstance.getServiceId()+"\t"+serviceInstance.getHost()+"\t"+serviceInstance.getPort()+"\t"+serviceInstance.getPort());
-        }
-        return this.discoveryClient;
     }
 }
