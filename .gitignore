@@ -6,3 +6,4 @@
 *.iml
 /eureka7002/target/
 /payment8003/target/
+/**/target/

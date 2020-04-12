@@ -16,6 +16,9 @@
         <module>eurake7001</module>
         <module>eureka7002</module>
         <module>payment8003</module>
+        <module>payment8004</module>
+        <module>order8005</module>
+        <module>payment8006</module>
     </modules>
 
     <properties>

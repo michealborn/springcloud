@@ -1,0 +1,15 @@
+###consul服务端口号
+server:
+  port: 8006
+
+spring:
+  application:
+    name: peyment
+  ###consul注册中心地址
+  cloud:
+    consul:
+      host: 47.101.36.47
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+#        service-name: ${spring.application.name}
