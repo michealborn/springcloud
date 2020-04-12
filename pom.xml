@@ -19,6 +19,7 @@
         <module>payment8004</module>
         <module>order8005</module>
         <module>payment8006</module>
+        <module>order8007</module>
     </modules>
 
     <properties>
