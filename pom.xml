@@ -21,6 +21,9 @@
         <module>payment8006</module>
         <module>order8007</module>
         <module>order8008</module>
+        <module>payment8009</module>
+        <module>order8010</module>
+        <module>hystrixdashboard9001</module>
     </modules>
 
     <properties>
