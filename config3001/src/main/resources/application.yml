@@ -1,0 +1,21 @@
+server:
+  port: 3001
+
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/michealborn/cloud2020config.git #github仓库上面的git仓库名字
+          ##搜索目录
+          search-paths:
+            - cloud2020config
+      #读取分支
+      label: master
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka #注册进eureka

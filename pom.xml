@@ -25,6 +25,8 @@
         <module>order8010</module>
         <module>hystrixdashboard9001</module>
         <module>gateway9002</module>
+        <module>config3001</module>
+        <module>configclient3002</module>
     </modules>
 
     <properties>
