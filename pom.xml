@@ -24,6 +24,7 @@
         <module>payment8009</module>
         <module>order8010</module>
         <module>hystrixdashboard9001</module>
+        <module>gateway9002</module>
     </modules>
 
     <properties>

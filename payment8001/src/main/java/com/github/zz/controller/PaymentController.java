@@ -10,6 +10,7 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @RestController
@@ -35,6 +36,8 @@ public class PaymentController {
             return new CommonResult(444,"插入数据失败",null);
         }
     }
+
+
     @GetMapping(value = "/payment/get/{id}")
     public CommonResult getPaymentById(@PathVariable("id") Long id){
         Payment payment = paymentService.getById(id);
@@ -45,6 +48,11 @@ public class PaymentController {
         }else{
             return new CommonResult(444,"没有对应记录,查询ID："+id,null);
         }
+    }
+
+    @GetMapping(value = "/payment/lb")
+    public String getLB(){
+        return serverPort;
     }
 
     @GetMapping(value = "/payment/discovery")
@@ -59,11 +67,6 @@ public class PaymentController {
             log.info(serviceInstance.getServiceId()+"\t"+serviceInstance.getHost()+"\t"+serviceInstance.getPort()+"\t"+serviceInstance.getPort());
         }
         return this.discoveryClient;
-    }
-
-    @GetMapping(value = "/payment/lb")
-    public String getLB(){
-        return serverPort;
     }
 
     @GetMapping(value = "/payment/timeout")
