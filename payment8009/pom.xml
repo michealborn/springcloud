@@ -12,6 +12,12 @@
     <artifactId>payment8009</artifactId>
 
     <dependencies>
+        <!--springwebsocket-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
         <!--hystrix-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

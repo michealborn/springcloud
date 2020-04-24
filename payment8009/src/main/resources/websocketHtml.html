@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>h2</title>
+    <script src="jquery.min.js"></script>
+    <script src="sockjs.min.js"></script>
+    <script src="stomp.min.js"></script>
+</head>
+<body onload="disconnect()">
+<noscript>
+    <h2 style="color:#ff0000">貌似你的浏览器不支持websocket</h2>
+</noscript>
+<div>
+    <div>
+        <button id="connect" onclick="connect()">连接</button>
+        <button id="disconnect" onclick="disconnect();">断开连接</button>
+    </div>
+    <div id="conversationDiv">
+        <label>输入你的名字</label> <input type="text" id="name" />
+        <br>
+        <label>输入消息</label> <input type="text" id="messgae" />
+        <button id="send" onclick="send();">发送</button>
+        <p id="response"></p>
+    </div>
+</div>
+<script type="text/javascript">
+    var stompClient = null;
+    //gateway网关的地址
+    // var host="http://127.0.0.1:4444";
+    // websocket的地址
+    // var host="http://localhost:8009";
+    // springgateway地址  配置了websocket的serverid是payment
+    var host="http://localhost:9002";
+    function setConnected(connected) {
+        document.getElementById('connect').disabled = connected;
+        document.getElementById('disconnect').disabled = !connected;
+        document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
+        $('#response').html();
+    }
+    function connect() {
+        var name = $('#name').val();
+        name="ali/";
+        if(name==null||name==''){
+            alert("先填注册名");
+            return false;
+        }
+        //地址+端点路径，构建websocket链接地址
+        var socket = new SockJS(host+'/zzwebsocket');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function(frame) {
+            console.log("连接成功")
+            setConnected(true);
+
+            //监听一对一有消息的对列
+            stompClient.subscribe('/user/'+name, function(response) {
+                showResponse(response.body);
+            });
+
+
+        });
+    }
+    function disconnect() {
+        if (stompClient != null) {
+            stompClient.disconnect();
+        }
+        setConnected(false);
+        console.log("Disconnected");
+    }
+    function send() {
+        var message = $('#messgae').val();
+        var url="/toServer/fromWeb";
+        //发送消息的路径
+        //JSON.stringify({username:name,message:message})
+        stompClient.send(url, {}, JSON.stringify({message:message}));
+    }
+    function showResponse(message) {
+        var response = $('#response');
+        response.html(message);
+    }
+</script>
+</body>
+</html>
+

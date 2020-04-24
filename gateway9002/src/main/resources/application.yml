@@ -19,7 +19,11 @@ spring:
             #After-在xx时间之后访问才有效，
             #Before-在xx时间之前访问才有效
             #Between-在xx~yy两个时间之间访问才有效
-            - After=2020-04-19T16:27:26.810+08:00[Asia/Shanghai]
+#            - After=2020-04-19T16:27:26.810+08:00[Asia/Shanghai]
+#        - id: websocket
+#          uri: lb:ws//payment
+#          predicates:
+#            - Path=/**
 
 #        - id: payment_routh2
 ##          uri: http://localhost:8001

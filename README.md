@@ -15,4 +15,5 @@ payment8009 -- 带熔断的支付 hystrix服务端演示
 order8010 -- 订单服务4 hystrix消费端调用  
 hystrixdashboard9001 -- hystrix 可视化界面，监控所有被hystrix绑定的接口的成功失败情况  
 gateway9002 -- 新的网关 spring出品  替代zuul  
+gateway9002+payment8009 -- 新加websocket使用SockJS并进行路由转发
 ...
