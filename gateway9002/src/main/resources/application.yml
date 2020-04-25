@@ -9,13 +9,15 @@ spring:
       discovery:
         locator:
           enabled: true    #开启从注册中心动态创建路由的功能，利用微服务名进行路由
+          lowerCaseServiceId: true  #加入此项可让路由后缀的域名id为小写，不然只能是大写
       routes:
         - id: payment_routh #payment_routh    #路由的ID，没有固定规则但要求唯一，简易配合服务名
 #          uri: http://localhost:8001         #匹配后提供服务的路由地址
           uri: lb://payment                   #匹配后提供服务的路由地址，lb后跟提供服务的微服务的名,集群内转发
+#          path: payment
           predicates:
 #            - Path=/payment/get/**          #断言，路径相匹配的进行路由
-            - Path=/**
+            - Path=/payment/**
             #After-在xx时间之后访问才有效，
             #Before-在xx时间之前访问才有效
             #Between-在xx~yy两个时间之间访问才有效

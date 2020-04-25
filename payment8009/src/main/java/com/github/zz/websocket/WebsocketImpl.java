@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
+
 @Controller
 public class WebsocketImpl {
 
@@ -43,7 +45,7 @@ public class WebsocketImpl {
     @GetMapping(value = "/payment/lb")
     @ResponseBody
     public String getLB(){
-        return "serverPort";
+        return new Date().toString();
     }
 
 }
